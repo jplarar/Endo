@@ -1,0 +1,10 @@
+parameters:
+#    endo.example.class: EndoBundle\Example
+
+
+services:
+    endo.cors_listener:
+            class: EndoBundle\EventListener\CorsListener
+            arguments: [@event_dispatcher]
+            tags:
+                - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

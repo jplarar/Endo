@@ -1,0 +1,109 @@
+{% extends 'EndoBundle:Common:layout.html.twig' %}
+{% set sideBar = 'medicalRecords' %}
+
+{% block content %}
+    <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12">
+              <div class="box without-border">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><b>{{ medicalRecord.name }}</b></h3>
+                  <div class="box-tools pull-right">
+                    <span class="small">
+                        <i class="fa fa-database"></i> {{ medicalRecord.medicalRecordId }}
+                    </span>
+                    &nbsp;&nbsp;
+                  </div>
+                </div>
+                <div class="box-body">
+                    <h3>General information</h3>
+                    <dl class="dl-horizontal">
+                        <dt>Name</dt>
+                        <dd>{{ medicalRecord.name }}</dd>
+                        <dt>Age</dt>
+                        <dd>{{ medicalRecord.age }}</dd>
+                        <dt>Creation Date</dt>
+                        <dd>{{ medicalRecord.date|date("F jS \\a\\t g:ia") }}</dd>
+                        <dt>Sex</dt>
+                        <dd>{{ medicalRecord.sex }}</dd>
+                        <dt>Address</dt>
+                        <dd>{{ medicalRecord.address }}</dd>
+                        <dt>Phone Number</dt>
+                        <dd>{{ medicalRecord.phone }}</dd>
+                        <dt>Email</dt>
+                        <dd>{{ medicalRecord.email }}</dd>
+                        <dt>Occupation</dt>
+                        <dd>{{ medicalRecord.occupation }}</dd>
+
+                        <hr>
+                        In case of emergency
+
+                        <dt>Contact</dt>
+                        <dd>{{ medicalRecord.emergencyName }}</dd>
+                        <dt>Phone Number</dt>
+                        <dd>{{ medicalRecord.emergencyPhone }}</dd>
+                        <dt>Relationship</dt>
+                        <dd>{{ medicalRecord.emergencyRelation }}</dd>
+
+                        <hr>
+                        <dt>Doctor</dt>
+                        <dd>{{ medicalRecord.doctorName }}</dd>
+                        <dt>Reference</dt>
+                        <dd>{{ medicalRecord.reference }}</dd>
+                        <dt>Motive of visit</dt>
+                        <dd>{{ medicalRecord.motive }}</dd>
+                        <dt>Health State</dt>
+                        <dd>{{ medicalRecord.healthState }}</dd>
+                        <dt>Previous Medical Treatment</dt>
+                        <dd>{{ medicalRecord.medicalTreatment }}</dd>
+                        <dt>Taking Medicine?</dt>
+                        <dd>{{ medicalRecord.takingMedicine }}</dd>
+                        <dt>Actual Sicknesses</dt>
+                        <dd>{{ medicalRecord.sickness }}</dd>
+                        <dt>Observations</dt>
+                        <dd>{{ medicalRecord.observations }}</dd>
+                        <dt>Other Sickness</dt>
+                        <dd>{{ medicalRecord.otherSickness }}</dd>
+                        <dt>Anesthesia Reaction</dt>
+                        <dd>{{ medicalRecord.anesthesiaReaction }}</dd>
+                        <dt>Medicine Reaction</dt>
+                        <dd>{{ medicalRecord.medicineReaction }}</dd>
+                        <dt>Bleeding</dt>
+                        <dd>{{ medicalRecord.bleeding }}</dd>
+                        <dt>Fainting</dt>
+                        <dd>{{ medicalRecord.fainting }}</dd>
+                        <dt>Chemotherapy</dt>
+                        <dd>{{ medicalRecord.chemotherapy|date("F jS \\a\\t g:ia") }}</dd>
+                        <dt>Hospitalisation</dt>
+                        <dd>{{ medicalRecord.hospitalisation }}</dd>
+                        <dt>Hospitalisation Date</dt>
+                        <dd>{{ medicalRecord.hospitalisationDate|date("F jS \\a\\t g:ia") }}</dd>
+                        <dt>Nervous</dt>
+                        <dd>{{ medicalRecord.nervous }}</dd>
+                        <dt>Smoke</dt>
+                        <dd>{{ medicalRecord.smoke }}</dd>
+                        <dt>Drink</dt>
+                        <dd>{{ medicalRecord.drink }}</dd>
+                        <dt>Drink</dt>
+                        <dd>{{ medicalRecord.drink }}</dd>
+
+
+                    </dl>
+
+
+
+
+
+                    {# <img src="{{ medicalRecord.bannerImageS3Key|s3 }}"/> #}
+                </div><!-- /.box-body -->
+                {# <div class="box-footer">
+                  Footer
+                </div><!-- /.box-footer--> #}
+              </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+{% endblock %}

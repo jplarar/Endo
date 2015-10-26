@@ -1,0 +1,3 @@
+endo_bundle:
+    resource: "@EndoBundle/Resources/config/routing.yml"
+    prefix:   /

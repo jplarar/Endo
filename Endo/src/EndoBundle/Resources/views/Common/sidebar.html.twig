@@ -1,0 +1,15 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <li class="header">Content</li>
+            <li {% if sideBar == 'admins' %}class="active" {% endif %}><a href="{{ path('endo_user_list') }}"><i class="fa fa-user-md"></i> <span>Admins</span></a></li>
+            <li {% if sideBar == 'medicalRecords' %}class="active" {% endif %}><a href="{{ path('endo_medicalrecord_list') }}"><i class="fa fa-users"></i> <span>Medical Records</span></a></li>
+        </ul><!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>

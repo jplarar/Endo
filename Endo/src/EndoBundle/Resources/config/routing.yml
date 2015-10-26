@@ -1,0 +1,59 @@
+##  SECURITY
+endo_login:
+    pattern:    /login
+    defaults:   { _controller: EndoBundle:Security:login }
+    
+endo_login_check:
+    pattern:    /login/check
+    
+endo_logout:
+    pattern:    /logout
+
+## DASHBOARD
+endo_dashboard:
+    pattern:    /
+    defaults:   { _controller: EndoBundle:Dashboard:main }
+    
+## API
+## DASHBOARD
+endo_api:
+    pattern:    /api
+    defaults:   { _controller: EndoBundle:Api:new }
+    
+## USER
+
+endo_user_list:
+    pattern:    /user
+    defaults:   { _controller: EndoBundle:User:list }
+
+endo_user_process:
+    pattern:    /user/process/{id}
+    defaults:   { _controller: EndoBundle:User:process, id: 0 }
+    requirements:
+        id:     \d+
+
+endo_user_view:
+    pattern:    /user/view/{id}
+    defaults:   { _controller: EndoBundle:User:view }
+
+endo_user_deactivate:
+    pattern:    /user/deactivate/{id}
+    defaults:   { _controller: EndoBundle:User:deactivate }
+
+endo_user_password:
+    pattern:    /user/password/{id}
+    defaults:   { _controller: EndoBundle:User:password }
+
+## MDECIAL RECORD
+
+endo_medicalrecord_list:
+    pattern:    /medicalrecord
+    defaults:   { _controller: EndoBundle:MedicalRecord:list }
+
+endo_medicalrecord_view:
+    pattern:    /medicalrecord/view/{id}
+    defaults:   { _controller: EndoBundle:MedicalRecord:view }
+
+endo_medicalrecord_delete:
+    pattern:    /medicalrecord/delete/{id}
+    defaults:   { _controller: EndoBundle:MedicalRecord:delete }

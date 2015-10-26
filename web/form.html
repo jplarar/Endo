@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="endo">
+<head>
+    <meta charset="UTF-8">
+    <title>Endodoncia Martínez- Formulario</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script>
+        angular.module('endo', []).controller('FormCtrl', function ($scope, $rootScope, $http, $q, $log) {
+            $scope.data = { loading: false, formSent: false };
+            $scope.user = {};
+            $scope.user.ills = [
+                {name: "Presión baja, alta", isSet: 0},
+                {name: "Problemas cardiacos", isSet: 0},
+                {name: "Alergias", isSet: 0},
+                {name: "Diabetes", isSet: 0},
+                {name: "Problemas renales", isSet: 0},
+                {name: "Hepatitis", isSet: 0},
+                {name: "Alteraciones nerviosas", isSet: 0},
+                {name: "Fiebre reumática", isSet: 0},
+                {name: "Artritis.", isSet: 0},
+                {name: "Gastritis / Ulcera gastrointestinal", isSet: 0},
+                {name: "Enfermedades de Transmisión Sexual (VIH/SIDA)", isSet: 0},
+                {name: "Problemas de Tiroides", isSet: 0},
+                {name: "Anemia", isSet: 0},
+                {name: "Cancer", isSet: 0},
+                {name: "Epilepsias / Convulsiones", isSet: 0},
+                {name: "Osteoporosis", isSet: 0}
+            ];
+            $scope.sendForm = function (){
+                $scope.data.loading = true;
+                $scope.user.sickness = '';
+                for(var i in $scope.user.ills) {
+                    if($scope.user.ills[i].isSet && $scope.user.ills[i].isSet == 1) {
+                        $scope.user.sickness += "1";
+                    } else {
+                        $scope.user.sickness += "0";
+                    }
+                }
+                $http({
+                  method: 'POST',
+                  data: $scope.user,
+                  dataType: 'json',
+                  url: 'http://control.drmartinez.co/api',
+                  headers: {
+                      'content-type': 'application/json'
+                  }
+                }).then(function(res) {
+                    console.log(res);
+                    sweetAlert("Muy bien", "Tu expediente ha sido enviado!", "success");
+                    $scope.data.formSent = true;
+                }, function(res) {
+
+                }).finally(function () {
+                    $scope.data.loading = false;
+                });
+            };
+        });
+    </script>
+</head>
+
+<body ng-controller="FormCtrl">
+    <div id="sent" ng-show="data.formSent" ng-cloak>
+        <h2 class="text-success">Tu expediente ya fue enviado, muchas gracias.</h2>
+    </div>
+    <div id="loading" ng-show="data.loading" ng-cloak>
+        <div class="loader">
+            <img src="img/loading.gif" alt="" class="img-responsive">
+        </div>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <img alt="Endodoncia Martinez" src="img/endodoncia_martinez.png">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-2">
+                <h3>Expediente Médico</h3>
+                <p>Favor de llenar este formulario cuando te lo indiquen.</p>
+                <p>Tu información es totalmente confidencial y será utilizada para tu biniestar y para nuestras estadísticas.</p>
+                <p class="text-info">Todos los campos son obligatorios</p>
+                <form ng-submit="form.$valid && sendForm()" name="form" class="form-horizontal" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Nombre</label>
+                        <div class="col-sm-8">
+                            <input ng-model="user.name" type="text" name="name" class="form-control" placeholder="Nombre Completo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="col-sm-2 control-label">Edad</label>
+                        <div class="col-sm-4">
+                            <input ng-model="user.age" type="number" min="1" max="99" name="age" class="form-control" placeholder="Edad" required>
+                        </div>
+                        <label for="sex" class="col-sm-2 control-label">Sexo</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="sex" ng-model="user.sex" required>
+                                <option value="0">Masculino</option>
+                                <option value="1">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="col-sm-2 control-label">Dirección</label>
+                        <div class="col-sm-8">
+                            <input ng-model="user.address" type="text" name="address" class="form-control" placeholder="Dirección" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-2 control-label">Teléfono</label>
+                        <div class="col-sm-8">
+                            <input ng-model="user.phone" type="text" name="phone" class="form-control" placeholder="Teléfono" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Correo</label>
+                        <div class="col-sm-8">
+                            <input ng-model="user.email" type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation" class="col-sm-2 control-label">Ocupación</label>
+                        <div class="col-sm-8">
+                            <input ng-model="user.occupation" type="text" name="occupation" class="form-control" placeholder="Ocupación" required>
+                        </div>
+                    </div>
+                    <p class="help-block text-danger">
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.name.$error.required">
+                        Su nombre es un campo obligatorio <br></span> 
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.email.$error.required">
+                        Su correo es un campo obligatorio <br></span> 
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.phone.$error.required">
+                        Su teléfono es un campo obligatorio <br></span> 
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.sex.$error.required">
+                        Su sexo es un campo obligatorio <br></span> 
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.occupation.$error.required">
+                        Su ocupación es un campo obligatorio <br></span> 
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.age.$error.required">
+                        Su edad es un campo obligatorio <br></span> 
+                    </p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p class="panel-title">
+                                INFORMACIÓN GENERAL
+                            </p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-no-border">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>En caso de emergencia llamar a (Nombre)</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="emergencyName" ng-model="user.emergencyName" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Parentesco con esta persona</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="emergencyRelation" ng-model="user.emergencyRelation" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Teléfono en caso de emergencia</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="emergencyPhone" ng-model="user.emergencyPhone" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre de su médico</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="doctorName" ng-model="user.doctorName" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>¿Quién lo refiere con nosotros?</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="reference" ng-model="user.reference" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Motivo de la consulta</td>
+                                        <td>
+                                            <textarea class="form-control" ng-model="user.motive" name="motive" cols="40" rows="5" required></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Como considera a su estado de salud en general?
+                                        </td>
+                                        <td>
+                                            Bueno <input name="healthState" type="radio" ng-model="user.healthState" value="1" ng-required="!user.healthState">
+                                            Malo <input name="healthState"  type="radio" ng-model="user.healthState" value="0" ng-required="!user.healthState">
+                                            Regular <input type="radio" ng-model="user.healthState" value="2" ng-required="!user.healthState">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Esta bajo algún tratamiento médico actualmente?
+                                        </td>
+                                        <td>
+                                            Si <input name="medicalTreatment" type="radio" ng-model="user.medicalTreatment" value="1" ng-required="!user.medicalTreatment">
+                                            No <input name="medicalTreatment" type="radio" ng-model="user.medicalTreatment" value="0" ng-required="!user.medicalTreatment">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Actualmente toma usted algún medicamento?
+                                        </td>
+                                        <td>
+                                            Si <input name="takingMedicine" type="radio" ng-model="user.takingMedicineBool" value="1" ng-required="!user.takingMedicine">
+                                            No <input name="takingMedicine" type="radio" ng-model="user.takingMedicineBool" value="0" ng-required="!user.takingMedicine">
+                                        </td>
+                                    </tr>
+                                    <tr ng-cloak ng-show="user.takingMedicineBool && user.takingMedicineBool !=0">
+                                        <td>
+                                            ¿Cuál?
+                                        </td>
+                                        <td>
+                                            <input name="takingMedicine" class="form-control" type="text" ng-model="user.takingMedicine" ng-required="user.takingMedicineBool && user.takingMedicineBool !=0">
+                                        </td>
+                                    </tr>
+                                    <!-- Para las enfermedades se maneja el bigint en JS -->
+                                    <tr>
+                                        <td colspan="2">
+                                            <b>Marque cual de estas enfermedades padece o ha padecido:</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div ng-repeat="ill in user.ills" ng-if="$even">
+                                                <input ng-model="ill.isSet" type="checkbox"> {{ ill.name }}<br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div ng-repeat="ill in user.ills" ng-if="$odd">
+                                                <input ng-model="ill.isSet" type="checkbox"> {{ ill.name }}<br>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="form-group">
+                                                <label for="observations" class="col-sm-2 control-label">Observaciones</label>
+                                                <div class="col-sm-8">
+                                                    <input ng-model="user.observations" type="text" name="observations" class="form-control">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Padece alguna otra enfermedad  o trastornó que no se menciono en esta lista y que debamos saber?
+                                        </td>
+                                        <td>
+                                            Si <input type="radio" ng-model="user.otherSicknessBool" value="1" ng-required="!user.otherSicknessBool">
+                                            No <input type="radio" ng-model="user.otherSicknessBool" value="0" ng-required="!user.otherSicknessBool">
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.otherSicknessBool && user.otherSicknessBool !=0" ng-cloak>
+                                        <td>Indique cual</td>
+                                        <td>
+                                            <input ng-model="user.otherSickness" type="text" name="otherSickness" class="form-control" ng-required="user.otherSicknessBool && user.otherSicknessBool !=0">
+                                        </td>
+                                    </tr>
+                                    <!-- Another girl -->
+                                    <tr>
+                                        <td>
+                                            ¿Ha tenido alguna reacción a la anestesia dental?
+                                        </td>
+                                        <td>
+                                            Si <input name="anesthesiaReaction" type="radio" ng-model="user.anesthesiaReaction" value="1" ng-required="!user.anesthesiaReaction">
+                                            No <input name="anesthesiaReaction" type="radio" ng-model="user.anesthesiaReaction" value="0" ng-required="!user.anesthesiaReaction">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Ha tenido alguna reacción a algún medicamento?
+                                        </td>
+                                        <td>
+                                            Si <input name="medicineReactionBool" type="radio" ng-model="user.medicineReactionBool" value="1" ng-required="!user.medicineReactionBool">
+                                            No <input name="medicineReactionBool" type="radio" ng-model="user.medicineReactionBool" value="0" ng-required="!user.medicineReactionBool">
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.medicineReactionBool && (user.medicineReactionBool != 0)">
+                                        <td>¿Cual?</td>
+                                        <td>
+                                            <input name="medicineReaction" type="text" ng-model="user.medicineReaction" class="form-control" ng-required="user.medicineReactionBool && (user.medicineReactionBool != 0)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Cuando se corta sangra por largo tiempo?
+                                        </td>
+                                        <td>
+                                            Si <input name="bleeding" type="radio" ng-model="user.bleeding" value="1" ng-required="!user.bleeding">
+                                            No <input name="bleeding" type="radio" ng-model="user.bleeding" value="0" ng-required="!user.bleeding">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Sufre desmayos frecuentes?
+                                        </td>
+                                        <td>
+                                            Si <input name="fainting" type="radio" ng-model="user.fainting" value="1" ng-required="!user.fainting">
+                                            No <input name="fainting" type="radio" ng-model="user.fainting" value="0" ng-required="!user.fainting">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Ha recibido tratamiento de radiación o quimioterapia?
+                                        </td>
+                                        <td>
+                                            Si <input name="chemotherapyBool" type="radio" ng-model="user.chemotherapyBool" value="1" ng-required="!user.chemotherapyBool">
+                                            No <input name="chemotherapyBool" type="radio" ng-model="user.chemotherapyBool" value="0" ng-required="!user.chemotherapyBool">
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.chemotherapyBool && user.chemotherapyBool != 0 ">
+                                        <td>Fecha</td>
+                                        <td>
+                                            <input name="chemotherapy" type="date" ng-model="user.chemotherapy" class="form-control" ng-required="user.chemotherapyBool && user.chemotherapyBool != 0">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Alguna vez ha sido hospitalizado?
+                                        </td>
+                                        <td>
+                                            Si <input name="hospitalisation" type="radio" ng-model="user.hospitalisation" value="1" ng-required="!user.hospitalisation">
+                                            No <input name="hospitalisation" type="radio" ng-model="user.hospitalisation" value="0" ng-required="!user.hospitalisation">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Se considera una persona nerviosa?
+                                        </td>
+                                        <td>
+                                            Si <input name="nervous" type="radio" ng-model="user.nervous" value="1" ng-required="!user.nervous">
+                                            No <input name="nervous" type="radio" ng-model="user.nervous" value="0" ng-required="!user.nervous">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Fuma?
+                                        </td>
+                                        <td>
+                                            Si <input name="smokeBool" type="radio" ng-model="user.smokeBool" value="1" ng-required="!user.smokeBool">
+                                            No <input name="smokeBool" type="radio" ng-model="user.smokeBool" value="0" ng-required="!user.smokeBool">
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.smokeBool && user.smokeBool != 0" ng-cloak>
+                                        <td>
+                                            ¿Con que frecuencia?
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="user.smoke">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Toma bebidas alcohólicas?
+                                        </td>
+                                        <td>
+                                            Si <input name="drinkBool" type="radio" ng-model="user.drinkBool" value="1" ng-required="!user.drinkBool">
+                                            No <input name="drinkBool" type="radio" ng-model="user.drinkBool" value="0" ng-required="!user.drinkBool">
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.drinkBool && user.drinkBool != 0" ng-cloak>
+                                        <td>
+                                            ¿Con que frecuencia?
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="user.drink">
+                                        </td>
+                                    </tr>
+                                    <!-- Mujeres -->
+                                    <tr ng-cloak ng-show="user.sex == 0">
+                                        <td>
+                                            ¿Esta usted embarazada?
+                                        </td>
+                                        <td>
+                                            Si <input name="pregnantBool" type="radio" ng-model="user.pregnantBool" value="1" ng-required="!user.pregnantBool && user.sex == 1">
+                                            No <input name="pregnantBool" type="radio" ng-model="user.pregnantBool" value="0" ng-required="!user.pregnantBool && user.sex == 1">
+                                        </td>
+                                    </tr>
+                                    <tr ng-cloak ng-show="user.sex == 1 && user.pregnantBool && user.pregnantBool !=0">
+                                        <td>
+                                            Meses de gestación
+                                        </td>
+                                        <td>
+                                            <input name="pregnant" type="number" min="0" max="9" class="form-control" ng-model="user.pregnant">
+                                        </td>
+                                    </tr>
+                                    <tr ng-cloak ng-show="user.sex == 1">
+                                        <td>
+                                            ¿Ha tenido problemas con su periodo?
+                                        </td>
+                                        <td>
+                                            Si <input name="periodProblems" type="radio" ng-model="user.periodProblems" value="1" ng-required="!user.periodProblems && user.sex == 1">
+                                            No <input name="periodProblems" type="radio" ng-model="user.periodProblems" value="0" ng-required="!user.periodProblems && user.sex == 1">
+                                        </td>
+                                    </tr>
+                                    <tr ng-cloak ng-show="user.sex == 1">
+                                        <td>
+                                            ¿Toma pastillas anticonceptivas o algún otro método hormonal?
+                                        </td>
+                                        <td>
+                                            Si <input name="hormonesBool" type="radio" ng-model="user.hormonesBool" value="1" ng-required="!user.hormonesBool && user.sex == 1">
+                                            No <input name="hormonesBool" type="radio" ng-model="user.hormonesBool" value="0" ng-required="!user.hormonesBool && user.sex == 1">
+                                        </td>
+                                    </tr>
+                                    <tr ng-cloak ng-show="user.sex == 1 && user.hormonesBool && user.hormonesBool !=0">
+                                        <td>
+                                            ¿Cual?
+                                        </td>
+                                        <td>
+                                            <input name="hormones" type="text" class="form-control" ng-model="user.hormones" ng-required="user.hormonesBool && user.sex == 1 && user.hormonesBool != 0">
+                                        </td>
+                                    </tr>
+                                    <tr ng-cloak ng-show="user.sex == 1">
+                                        <td>
+                                            ¿Esta usted amamantando?
+                                        </td>
+                                        <td>
+                                            Si <input name="breastFeeding" type="radio" ng-model="user.breastFeeding" value="1" ng-required="!user.breastFeeding && user.sex == 1">
+                                            No <input name="breastFeeding" type="radio" ng-model="user.breastFeeding" value="0" ng-required="!user.breastFeeding && user.sex == 1">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-danger" ng-cloak ng-show="form.$submitted && form.$error.required">
+                            Todos los campos de la forma son obligatorios
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- HISTORIA DENTAL -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p class="panel-title">
+                                HISTORIA DENTAL
+                            </p>
+                        </div>
+                        <table class="table">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ¿Tiene algún dolor en su boca en este momento?
+                                    </td>
+                                    <td>
+                                        Si <input name="pain" type="radio" ng-model="user.pain" value="1" ng-required="!user.pain">
+                                        No <input name="pain" type="radio" ng-model="user.pain" value="0" ng-required="!user.pain">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Como considera usted su salud bucal?
+                                    </td>
+                                    <td>
+                                        Buena <input name="bucalHealth" type="radio" ng-model="user.bucalHealth" value="1" ng-required="!user.bucalHealth">
+                                        Mala <input name="bucalHealth" type="radio" ng-model="user.bucalHealth" value="0" ng-required="!user.bucalHealth">
+                                        Regular <input name="bucalHealth" type="radio" ng-model="user.bucalHealth" value="2" ng-required="!user.bucalHealth">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Esta contento usted con la apariencia de su boca?
+                                    </td>
+                                    <td>
+                                        Si <input name="appearance" type="radio" ng-model="user.appearance" value="1" ng-required="!user.appearance">
+                                        No <input name="appearance" type="radio" ng-model="user.appearance" value="0" ng-required="!user.appearance">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Ha tenido alguna mala experiencia dental?
+                                    </td>
+                                    <td>
+                                        Si <input name="dentalExperience" type="radio" ng-model="user.dentalExperience" value="1" ng-required="!user.dentalExperience">
+                                        No <input name="dentalExperience" type="radio" ng-model="user.dentalExperience" value="0" ng-required="!user.dentalExperience">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Sangran sus encías?
+                                    </td>
+                                    <td>
+                                        Si <input name="gumsBleed" type="radio" ng-model="user.gumsBleed" value="1" ng-required="!user.gumsBleed">
+                                        No <input name="gumsBleed" type="radio" ng-model="user.gumsBleed" value="0" ng-required="!user.gumsBleed">
+                                        Desconozco <input name="gumsBleed" type="radio" ng-model="user.gumsBleed" value="2" ng-required="!user.gumsBleed">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Ha recibido tratamiento en sus encías?
+                                    </td>
+                                    <td>
+                                        Si <input name="gumsTreatment" type="radio" ng-model="user.gumsTreatment" value="1" ng-required="!user.gumsTreatment">
+                                        No <input name="gumsTreatment" type="radio" ng-model="user.gumsTreatment" value="0" ng-required="!user.gumsTreatment">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Respira frecuentemente por su boca?
+                                    </td>
+                                    <td>
+                                        Si <input name="mouthBreathing" type="radio" ng-model="user.mouthBreathing" value="1" ng-required="!user.mouthBreathing">
+                                        No <input name="mouthBreathing" type="radio" ng-model="user.mouthBreathing" value="0" ng-required="!user.mouthBreathing">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Padece frecuentemente de Aftas o Ulceras?
+                                    </td>
+                                    <td>
+                                        Si <input name="ulcers" type="radio" ng-model="user.ulcers" value="1" ng-required="!user.ulcers">
+                                        No <input name="ulcers" type="radio" ng-model="user.ulcers" value="0" ng-required="!user.ulcers">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Tiene sensibilidad en sus dientes al calor, frío o dulce?
+                                    </td>
+                                    <td>
+                                        Si <input name="sensibilityBool" type="radio" ng-model="user.sensibilityBool" value="1" ng-required="!user.sensibilityBool">
+                                        No <input name="sensibilityBool" type="radio" ng-model="user.sensibilityBool" value="0" ng-required="!user.sensibilityBool">
+                                    </td>
+                                </tr>
+                                <tr ng-show="user.sensibilityBool && user.sensibilityBool !=0">
+                                    <td>
+                                        ¿Cual?
+                                    </td>
+                                    <td>
+                                        <input type="text" name="sensibility" class="form-control" ng-model="user.sensibility" ng-required="user.sensibilityBool && user.sensibilityBool !=0">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Tiene o siente algún diente flojo?
+                                    </td>
+                                    <td>
+                                        Si <input type="radio" ng-model="user.looseTooth" value="1" ng-required="!user.looseTooth">
+                                        No <input type="radio" ng-model="user.looseTooth" value="0" ng-required="!user.looseTooth">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Con que frecuencia cepilla sus dientes?
+                                    </td>
+                                    <td>
+                                        <input name="brushingFrequency" type="text" ng-model="user.brushingFrequency" class="form-control" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Utiliza hilo dental o algún auxiliar de limpieza (enjuague bucal, palillo)?
+                                    </td>
+                                    <td>
+                                        Si <input type="radio" ng-model="user.auxiliaryCleaning" value="1" ng-required="!user.auxiliaryCleaning">
+                                        No <input type="radio" ng-model="user.auxiliaryCleaning" value="0" ng-required="!user.auxiliaryCleaning">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-danger" ng-cloak ng-show="form.$submitted && form.$error.required">
+                            Todos los campos de la forma son obligatorios
+                        </p>
+                    </div>
+                    <!-- ATM -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p class="panel-title">
+                                ATM
+                            </p>
+                        </div>
+                        <table class="table">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ¿Rechina o aprieta sus dientes durante el día o la noche?
+                                    </td>
+                                    <td>
+                                        Si <input name="squeezesTooth" type="radio" ng-model="user.squeezesTooth" value="1" ng-required="!user.squeezesTooth">
+                                        No <input name="squeezesTooth" type="radio" ng-model="user.squeezesTooth" value="0" ng-required="!user.squeezesTooth">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Amanece ocasionalmente con los músculos de cara y cuello adoloridos?
+                                    </td>
+                                    <td>
+                                        Si <input name="musclePain" type="radio" ng-model="user.musclePain" value="1" ng-required="!user.musclePain">
+                                        No <input name="musclePain" type="radio" ng-model="user.musclePain" value="0" ng-required="!user.musclePain">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Se ha quedado con la boca abierta al bostezar o morder algún alimento?
+                                    </td>
+                                    <td>
+                                        Si <input name="mouthStuck" type="radio" ng-model="user.mouthStuck" value="1" ng-required="!user.mouthStuck">
+                                        No <input name="mouthStuck" type="radio" ng-model="user.mouthStuck" value="0" ng-required="!user.mouthStuck">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Siente algún tronido o chasquido al abrir su boca?
+                                    </td>
+                                    <td>
+                                        Si <input name="click" type="radio" ng-model="user.click" value="1" ng-required="!user.click">
+                                        No <input name="click" type="radio" ng-model="user.click" value="0" ng-required="!user.click">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Tiene dolor de oídos o zona anterior del oído?
+                                    </td>
+                                    <td>
+                                        Si <input name="earPain" type="radio" ng-model="user.earPain" value="1" ng-required="!user.earPain">
+                                        No <input name="earPain" type="radio" ng-model="user.earPain" value="0" ng-required="!user.earPain">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Mastica con todos sus dientes?
+                                    </td>
+                                    <td>
+                                        Si <input name="chews" type="radio" ng-model="user.chews" value="1" ng-required="!user.chews">
+                                        No <input name="chews" type="radio" ng-model="user.chews" value="0" ng-required="!user.chews">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Tiene el habito de morder uñas, plumas o tejidos blandos?
+                                    </td>
+                                    <td>
+                                        Si <input name="biteNails" type="radio" ng-model="user.biteNails" value="1" ng-required="!user.biteNails">
+                                        No <input name="biteNails" type="radio" ng-model="user.biteNails" value="0" ng-required="!user.biteNails">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ¿Ha sufrido algún traumatismo facial?
+                                    </td>
+                                    <td>
+                                        Si <input name="trauma" type="radio" ng-model="user.trauma" value="1" ng-required="!user.trauma">
+                                        No <input name="trauma" type="radio" ng-model="user.trauma" value="0" ng-required="!user.trauma">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-danger" ng-cloak ng-show="form.$submitted && form.$error.required">
+                            Todos los campos de la forma son obligatorios
+                        </p>
+                    </div>
+                    <div class="alert alert-warning aviso-privacidad">
+                        <input name="privacy" type="checkbox" ng-model="user.privacy" required> Declaro que he contestado todas las preguntas con honestidad y según mi conocimiento. Así mismo he sido informado que los datos subministrados quedan reservados en la presente historia clínica, y amparada en el “secreto profesional” . Asi mismo acepto y entiendo los riesgos de mi tratamiento y consecuencias de no hacer lo que el médico me indique.
+                    </div>
+                    <p class="text-danger" ng-cloak ng-show="form.$submitted && form.privacy.$error.required">
+                        Por favor acepta los términos.
+                    </p>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-01">
+                            <button type="" class="btn btn-default">Limpiar Formulario</button>
+                            <button type="submit" class="btn btn-primary">Enviar Datos</button>
+                        </div>
+                    </div>
+                </form>
+<!--                 <pre>form.$error.required = {{form.$error.required | json}}</pre>
+                <pre>user = {{user | json}}</pre> -->
+            </div>
+            <div class="col-sm-3">
+                <div class="box">
+                    <img src="img/smile.jpg" alt="Smile">
+                    <h4>Contáctanos</h4>
+                    <p><i class="fa fa-phone"></i> <a href="tel:1111111111">111-111-1111</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
