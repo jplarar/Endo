@@ -287,7 +287,6 @@ li a.active{
 .service{
 	background: url(../img/pattern.jpg);
 	background-repeat: repeat-y;
-	margin-top: 40px;
 }
 .service h2{
 	font-size: 90px;
@@ -936,4 +935,8 @@ responsive area
 
 #carouselHacked .carousel-caption h1, #carouselHacked .carousel-caption p {
 	color: #21445e;
+}
+
+#services {
+	margin-bottom: 40px;
 }
