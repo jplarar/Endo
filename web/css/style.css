@@ -897,3 +897,29 @@ responsive area
   	}
 }
 
+.info-detail ul {
+	margin-bottom: 20px;
+}
+
+#bgvid {
+	width: 100%;
+	max-width: 100%;
+}
+
+#vidpause {
+	border: 0;
+	background: transparent;
+	position: absolute;
+	top: 35%;
+	left: 40%;
+}
+
+#vidpause:focus {
+	outline: none;
+}
+
+#vidpause i {
+	font-size: 75px;
+	opacity: 0.9;
+	color: #000;
+}

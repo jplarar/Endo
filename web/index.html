@@ -87,48 +87,45 @@
 	<section class="about text-center" id="services">
 		<div class="container">
 			<div class="row">
-				<h2>Servicios</h2>
-				<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
+				<h2>Endodoncia</h2>
+				<h4>No hay nada mejor que conservar tus dientes</h4>
 				<div class="col-md-4 col-sm-6">
 					<div class="single-about-detail clearfix">
 						<div class="about-img">
-							<img class="img-responsive" src="img/dentist1.jpg" alt="">
+							<img class="img-responsive" src="img/card.jpg" alt="">
 						</div>
 						<div class="about-details">
 							<div class="pentagon-text">
-								<h1>E</h1>
+								<h1><img src="img/tooth29.png" height="50" style="padding-bottom: 8px"></h1>
 							</div>
-							<h3>Endodoncia</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+							<p>La endodoncia es una especialidad de la odontología dedicada a la prevención, diagnóstico y tratamiento  de las enfermedades o lesiones de la pulpa dental.
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<div class="single-about-detail">
 						<div class="about-img">
-							<img class="img-responsive" src="img/dentist1.jpg" alt="">
-						</div>
-						<div class="about-details">
-							<div class="pentagon-text">
-								<h1>E</h1>
-							</div>
+							<video loop poster="img/screen.png" id="bgvid">
+								<source src="img/endo.webm" type="video/webm">
+								<source src="img/endo.m4v" type="video/mp4">
+							</video>
 
-							<h3>Endodoncia</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+							<button id="vidpause"><i class="fa fa-play"></i></button>
+							<div id="fondovideo"></div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<div class="single-about-detail">
 						<div class="about-img">
-							<img class="img-responsive" src="img/dentist1.jpg" alt="">
+							<img class="img-responsive" src="img/endodoncia.png" alt="">
 						</div>
 						<div class="about-details">
 							<div class="pentagon-text">
-								<h1>E</h1>
+								<h1><img src="img/tooth29.png" height="50" style="padding-bottom: 8px"></h1>
 							</div>
-							<h3>Endodoncia</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+							<p>Es un procedimiento que sirve para conservar piezas dentales que de otra forma habría que extraer, permitiendo su posterior reconstrucción y rehabilitación, evitando perder el diente.</p>
 						</div>
 					</div>
 				</div>
@@ -143,16 +140,18 @@
 			<div class="row">
 <div class="team-heading text-center">
 					<h2>Tu Doctor</h2>
-					<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
 				</div>
 				<div class="col-sm-6 col-sm-offset-3 doc">
 					<div class="person">
-						<img class="img-responsive" src="img/member1.jpg" alt="member-1">
+						<img class="img-responsive" src="img/alejandro.jpg" alt="member-1">
 					</div>
 					<div class="person-detail">
 						<div class="arrow-bottom"></div>
 						<h3>Dr. Alejandro Martínez Glz</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+						<p>
+							Egresado de la Universidad Autónoma de Coahuila como cirujano dentista
+							Maestría en Endodoncia en la Universidad Autónoma de San Luis Potosí
+						</p>
 					</div>
 				</div>
 			</div>
@@ -179,10 +178,16 @@
 					<div class="col-md-5 contact-info text-left">
 						<h3>Información de contacto</h3>
 						<div class="info-detail">
-							<ul><li><i class="fa fa-calendar"></i><span>Luneas - Viernes:</span> 9:30 AM to 6:30 PM</li></ul>
-							<ul><li><i class="fa fa-map-marker"></i><span>Dirección:</span> 123 Some Street , London, UK, CP 123</li></ul>
-							<ul><li><i class="fa fa-phone"></i><span>Telefono:</span> (844) 412-1235</li></ul>
-							<ul><li><i class="fa fa-envelope"></i><span>Email:</span> info@doctor.com</li></ul>
+							<ul>
+								<li><i class="fa fa-calendar" style="float: left;"></i>
+									<span>Luneas - Viernes:</span> 10:00 AM a 8:00 PM <br>
+									<span>Sábado:</span> 10:00 AM a 1:00 PM
+								</li>
+							</ul>
+							<ul><li><i class="fa fa-map-marker" style="float: left;"></i><span>Dirección:</span> Blvd. Nazario Ortiz Garza 2800 Consultorio 211 “Centro Medico San Antonio”
+							</li></ul>
+							<ul><li><i class="fa fa-phone"></i><span>Telefono:</span> (844) 1 38 81 80</li></ul>
+							<ul><li><i class="fa fa-envelope"></i><span>Email:</span> dralejandro@gmail.com</li></ul>
 						</div>
 					</div>
 					<div class="col-md-6 col-md-offset-1 contact-form">
@@ -225,5 +230,39 @@
 	<script src="js/smoothscroll.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
+	<script>
+		var vid = document.getElementById("bgvid"),
+				pauseButton = document.getElementById("vidpause");
+		function vidFade() {
+			vid.classList.add("stopfade");
+		}
+		vid.addEventListener('ended', function() {
+			// only functional if "loop" is removed
+			vid.pause();
+			// to capture IE10
+			vidFade();
+		});
+		pauseButton.addEventListener("click", function() {
+			vid.classList.toggle("stopfade");
+			if (vid.paused) {
+				vid.play();
+				pauseButton.innerHTML = "";
+			} else {
+				vid.pause();
+				pauseButton.innerHTML = "<i class='fa fa-play'></i>";
+			}
+		});
+		vid.addEventListener("click", function() {
+			vid.classList.toggle("stopfade");
+			if (vid.paused) {
+				vid.play();
+				pauseButton.innerHTML = "";
+			} else {
+				vid.pause();
+				pauseButton.innerHTML = "<i class='fa fa-play'></i>";
+			}
+		});
+
+	</script>
 </body>
 </html>
