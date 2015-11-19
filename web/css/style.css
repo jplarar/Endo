@@ -34,6 +34,7 @@ h1, h2{
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
+	margin-top: 20px;
 }
 
 .btn-primary.btn-form:hover,
@@ -922,4 +923,17 @@ responsive area
 	font-size: 75px;
 	opacity: 0.9;
 	color: #000;
+}
+
+#carouselHacked .carousel-caption {
+	top: 28%;
+	right: 0 !important;
+	left: 0;
+	color: #21445e;
+	text-shadow: none;
+	text-align: center;
+}
+
+#carouselHacked .carousel-caption h1, #carouselHacked .carousel-caption p {
+	color: #21445e;
 }
