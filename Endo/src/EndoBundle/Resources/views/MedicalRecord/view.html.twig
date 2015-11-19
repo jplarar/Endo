@@ -9,7 +9,7 @@
             <div class="col-sm-12">
               <div class="box without-border">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><b>{{ medicalRecord.name }}</b></h3>
+                  <h3 class="box-title"><b>Clinical Record</b></h3>
                   <div class="box-tools pull-right">
                     <span class="small">
                         <i class="fa fa-database"></i> {{ medicalRecord.medicalRecordId }}
@@ -18,7 +18,7 @@
                   </div>
                 </div>
                 <div class="box-body">
-                    <h3>General information</h3>
+                    <h3>General information - {{ medicalRecord.name }}</h3>
                     <dl class="dl-horizontal">
                         <dt>Name</dt>
                         <dd>{{ medicalRecord.name }}</dd>
@@ -27,7 +27,11 @@
                         <dt>Creation Date</dt>
                         <dd>{{ medicalRecord.date|date("F jS \\a\\t g:ia") }}</dd>
                         <dt>Sex</dt>
-                        <dd>{{ medicalRecord.sex }}</dd>
+                        {% if medicalRecord.sex %}
+                            <dd>Female</dd>
+                        {% else %}
+                            <dd>Male</dd>
+                        {% endif %}
                         <dt>Address</dt>
                         <dd>{{ medicalRecord.address }}</dd>
                         <dt>Phone Number</dt>
@@ -36,17 +40,14 @@
                         <dd>{{ medicalRecord.email }}</dd>
                         <dt>Occupation</dt>
                         <dd>{{ medicalRecord.occupation }}</dd>
-
                         <hr>
-                        In case of emergency
-
+                        <h3>In case of emergency</h3>
                         <dt>Contact</dt>
                         <dd>{{ medicalRecord.emergencyName }}</dd>
                         <dt>Phone Number</dt>
                         <dd>{{ medicalRecord.emergencyPhone }}</dd>
                         <dt>Relationship</dt>
                         <dd>{{ medicalRecord.emergencyRelation }}</dd>
-
                         <hr>
                         <dt>Doctor</dt>
                         <dd>{{ medicalRecord.doctorName }}</dd>
@@ -55,12 +56,22 @@
                         <dt>Motive of visit</dt>
                         <dd>{{ medicalRecord.motive }}</dd>
                         <dt>Health State</dt>
-                        <dd>{{ medicalRecord.healthState }}</dd>
+                        {% if medicalRecord.healthState == 0 %}
+                            <dd>Bad</dd>
+                        {% elseif medicalRecord.healthState == 1 %}
+                            <dd>Good</dd>
+                        {% else %}
+                            <dd>Regular</dd>
+                        {% endif %}
                         <dt>Previous Medical Treatment</dt>
-                        <dd>{{ medicalRecord.medicalTreatment }}</dd>
+                        {% if medicalRecord.medicalTreatment %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Taking Medicine?</dt>
                         <dd>{{ medicalRecord.takingMedicine }}</dd>
-                        <dt>Actual Sicknesses</dt>
+                        <dt>Patient illnesses</dt>
                         <dd>{{ medicalRecord.sickness }}</dd>
                         <dt>Observations</dt>
                         <dd>{{ medicalRecord.observations }}</dd>

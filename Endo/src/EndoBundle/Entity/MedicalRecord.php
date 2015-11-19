@@ -88,7 +88,7 @@ class MedicalRecord
     protected $emergencyRelation;
 
     /**
-     * @ORM\Column(type="string", nullable=true
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $doctorName;
 
