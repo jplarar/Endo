@@ -48,7 +48,7 @@ class MedicalRecord
     /**
      * 0: M
      * 1: F
-     * @ORM\Column(type="smallint", nullable=false)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     protected $sex;
 
