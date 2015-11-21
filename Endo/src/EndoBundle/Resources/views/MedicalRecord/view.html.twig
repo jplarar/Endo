@@ -27,7 +27,7 @@
                         <dt>Creation Date</dt>
                         <dd>{{ medicalRecord.date|date("F jS \\a\\t g:ia") }}</dd>
                         <dt>Sex</dt>
-                        {% if medicalRecord.sex %}
+                        {% if medicalRecord.sex == 'F' %}
                             <dd>Female</dd>
                         {% else %}
                             <dd>Male</dd>
