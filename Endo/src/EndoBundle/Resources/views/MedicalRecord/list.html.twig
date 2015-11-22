@@ -40,7 +40,7 @@
                                         <td>{{ medicalRecord.medicalRecordId }}</td>
                                         <td><a href="{{ path('endo_medicalrecord_view',{'id': medicalRecord.medicalRecordId}) }}">{{ medicalRecord.name }}</a></td>
                                         <td>{{ medicalRecord.age }}</td>
-                                        <td>{{ medicalRecord.date|date("F jS \\a\\t g:ia") }}</td>
+                                        <td>{{ medicalRecord.date|date("Y-m-d H:i:s") }}</td>
                                         <td>{{ medicalRecord.phone }}</td>
                                         <td>{{ medicalRecord.email }}</td>
                                         <td>

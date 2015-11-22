@@ -98,6 +98,10 @@
                             <input ng-model="user.name" type="text" name="name" class="form-control" placeholder="Nombre Completo" required>
                         </div>
                     </div>
+                    <p class="help-block text-danger">
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.name.$error.required">
+                        Su nombre es un campo obligatorio <br></span>
+                    </p>
                     <div class="form-group">
                         <label for="age" class="col-sm-2 control-label">Edad</label>
                         <div class="col-sm-4">
@@ -105,30 +109,47 @@
                         </div>
                         <label for="sex" class="col-sm-2 control-label">Sexo</label>
                         <div class="col-sm-4">
-                            <select class="form-control" name="sex" ng-model="user.sex">
+                            <select class="form-control" name="sex" ng-model="user.sex" required>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
                             </select>
                         </div>
                     </div>
+                    <p class="help-block text-danger">
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.age.$error.required">
+                        Su edad es un campo obligatorio <br></span>
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.sex.$error.required">
+                        Su sexo es un campo obligatorio <br></span>
+                    </p>
                     <div class="form-group">
                         <label for="address" class="col-sm-2 control-label">Dirección</label>
                         <div class="col-sm-10">
                             <input ng-model="user.address" type="text" name="address" class="form-control" placeholder="Dirección" required>
                         </div>
                     </div>
+                    <p class="help-block text-danger">
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.address.$error.required">
+                        Su dirección es un campo obligatorio <br></span>
+                    </p>
                     <div class="form-group">
                         <label for="phone" class="col-sm-2 control-label">Teléfono</label>
                         <div class="col-sm-10">
                             <input ng-model="user.phone" type="text" name="phone" class="form-control" placeholder="Teléfono" required>
                         </div>
                     </div>
+                    <p class="help-block text-danger">
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.phone.$error.required">
+                        Su teléfono es un campo obligatorio <br></span>
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Correo</label>
                         <div class="col-sm-10">
                             <input ng-model="user.email" type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
                         </div>
                     </div>
+                    <p class="help-block text-danger">
+                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.email.$error.required">
+                        Su correo es un campo obligatorio <br></span>
+                    </p>
                     <div class="form-group">
                         <label for="occupation" class="col-sm-2 control-label">Ocupación</label>
                         <div class="col-sm-10">
@@ -136,18 +157,8 @@
                         </div>
                     </div>
                     <p class="help-block text-danger">
-                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.name.$error.required">
-                        Su nombre es un campo obligatorio <br></span> 
-                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.email.$error.required">
-                        Su correo es un campo obligatorio <br></span> 
-                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.phone.$error.required">
-                        Su teléfono es un campo obligatorio <br></span> 
-                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.sex.$error.required">
-                        Su sexo es un campo obligatorio <br></span> 
                         <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.occupation.$error.required">
-                        Su ocupación es un campo obligatorio <br></span> 
-                        <span class="text-danger" ng-cloak ng-show="form.$submitted &amp;&amp; form.age.$error.required">
-                        Su edad es un campo obligatorio <br></span> 
+                        Su ocupación es un campo obligatorio <br></span>
                     </p>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -156,25 +167,37 @@
                             </p>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-no-border">
+                        	<table class="table table-no-border">
                                 <thead></thead>
                                 <tbody>
                                     <tr>
                                         <td>En caso de emergencia llamar a (Nombre)</td>
                                         <td>
                                             <input class="form-control" type="text" name="emergencyName" ng-model="user.emergencyName" required>
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.emergencyName.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Parentesco con esta persona</td>
                                         <td>
                                             <input class="form-control" type="text" name="emergencyRelation" ng-model="user.emergencyRelation" required>
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.emergencyRelation.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Teléfono en caso de emergencia</td>
                                         <td>
                                             <input class="form-control" type="text" name="emergencyPhone" ng-model="user.emergencyPhone" required>
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.emergencyPhone.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -188,12 +211,20 @@
                                         <td>¿Quién lo refiere con nosotros?</td>
                                         <td>
                                             <input class="form-control" type="text" name="reference" ng-model="user.reference" required>
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.reference.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Motivo de la consulta</td>
                                         <td>
                                             <textarea class="form-control" ng-model="user.motive" name="motive" cols="40" rows="5" required></textarea>
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.motive.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -204,6 +235,10 @@
                                             Bueno <input name="healthState" type="radio" ng-model="user.healthState" value="1" ng-required="!user.healthState">
                                             Malo <input name="healthState"  type="radio" ng-model="user.healthState" value="0" ng-required="!user.healthState">
                                             Regular <input type="radio" ng-model="user.healthState" value="2" ng-required="!user.healthState">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.healthState.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -213,6 +248,10 @@
                                         <td>
                                             Si <input name="medicalTreatment" type="radio" ng-model="user.medicalTreatment" value="1" ng-required="!user.medicalTreatment">
                                             No <input name="medicalTreatment" type="radio" ng-model="user.medicalTreatment" value="0" ng-required="!user.medicalTreatment">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.medicalTreatment.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -222,6 +261,10 @@
                                         <td>
                                             Si <input name="takingMedicine" type="radio" ng-model="user.takingMedicineBool" value="1" ng-required="!user.takingMedicine">
                                             No <input name="takingMedicine" type="radio" ng-model="user.takingMedicineBool" value="0" ng-required="!user.takingMedicine">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.takingMedicine.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr ng-cloak ng-show="user.takingMedicineBool && user.takingMedicineBool !=0">
@@ -268,6 +311,10 @@
                                         <td>
                                             Si <input type="radio" ng-model="user.otherSicknessBool" value="1" ng-required="!user.otherSicknessBool">
                                             No <input type="radio" ng-model="user.otherSicknessBool" value="0" ng-required="!user.otherSicknessBool">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.otherSicknessBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr ng-show="user.otherSicknessBool && user.otherSicknessBool !=0" ng-cloak>
@@ -284,6 +331,10 @@
                                         <td>
                                             Si <input name="anesthesiaReaction" type="radio" ng-model="user.anesthesiaReaction" value="1" ng-required="!user.anesthesiaReaction">
                                             No <input name="anesthesiaReaction" type="radio" ng-model="user.anesthesiaReaction" value="0" ng-required="!user.anesthesiaReaction">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.anesthesiaReaction.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -293,9 +344,13 @@
                                         <td>
                                             Si <input name="medicineReactionBool" type="radio" ng-model="user.medicineReactionBool" value="1" ng-required="!user.medicineReactionBool">
                                             No <input name="medicineReactionBool" type="radio" ng-model="user.medicineReactionBool" value="0" ng-required="!user.medicineReactionBool">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.medicineReactionBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <tr ng-show="user.medicineReactionBool && (user.medicineReactionBool != 0)">
+                                    <tr ng-show="user.medicineReactionBool && user.medicineReactionBool != 0">
                                         <td>¿Cual?</td>
                                         <td>
                                             <input name="medicineReaction" type="text" ng-model="user.medicineReaction" class="form-control" ng-required="user.medicineReactionBool && (user.medicineReactionBool != 0)">
@@ -308,6 +363,10 @@
                                         <td>
                                             Si <input name="bleeding" type="radio" ng-model="user.bleeding" value="1" ng-required="!user.bleeding">
                                             No <input name="bleeding" type="radio" ng-model="user.bleeding" value="0" ng-required="!user.bleeding">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.bleeding.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -317,6 +376,10 @@
                                         <td>
                                             Si <input name="fainting" type="radio" ng-model="user.fainting" value="1" ng-required="!user.fainting">
                                             No <input name="fainting" type="radio" ng-model="user.fainting" value="0" ng-required="!user.fainting">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.fainting.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -326,6 +389,10 @@
                                         <td>
                                             Si <input name="chemotherapyBool" type="radio" ng-model="user.chemotherapyBool" value="1" ng-required="!user.chemotherapyBool">
                                             No <input name="chemotherapyBool" type="radio" ng-model="user.chemotherapyBool" value="0" ng-required="!user.chemotherapyBool">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.chemotherapyBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr ng-show="user.chemotherapyBool && user.chemotherapyBool != 0 ">
@@ -339,8 +406,24 @@
                                             ¿Alguna vez ha sido hospitalizado?
                                         </td>
                                         <td>
-                                            Si <input name="hospitalisation" type="radio" ng-model="user.hospitalisation" value="1" ng-required="!user.hospitalisation">
-                                            No <input name="hospitalisation" type="radio" ng-model="user.hospitalisation" value="0" ng-required="!user.hospitalisation">
+                                            Si <input name="hospitalisationBool" type="radio" ng-model="user.hospitalisationBool" value="1" ng-required="!user.hospitalisationBool">
+                                            No <input name="hospitalisationBool" type="radio" ng-model="user.hospitalisationBool" value="0" ng-required="!user.hospitalisationBool">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.hospitalisationBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.hospitalisationBool && user.hospitalisationBool != 0 ">
+                                        <td>Fecha</td>
+                                        <td>
+                                            <input name="hospitalisationDate" type="date" ng-model="user.hospitalisationDate" class="form-control" ng-required="user.hospitalisationBool && user.hospitalisationBool != 0">
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="user.hospitalisationBool && user.hospitalisationBool != 0 ">
+                                    	<td>Motivo</td>
+                                        <td>
+                                            <input name="hospitalisation" type="text" ng-model="user.hospitalisation" class="form-control" ng-required="user.hospitalisationBool && user.hospitalisationBool != 0">
                                         </td>
                                     </tr>
                                     <tr>
@@ -350,6 +433,10 @@
                                         <td>
                                             Si <input name="nervous" type="radio" ng-model="user.nervous" value="1" ng-required="!user.nervous">
                                             No <input name="nervous" type="radio" ng-model="user.nervous" value="0" ng-required="!user.nervous">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.nervous.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -359,6 +446,10 @@
                                         <td>
                                             Si <input name="smokeBool" type="radio" ng-model="user.smokeBool" value="1" ng-required="!user.smokeBool">
                                             No <input name="smokeBool" type="radio" ng-model="user.smokeBool" value="0" ng-required="!user.smokeBool">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.smokeBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr ng-show="user.smokeBool && user.smokeBool != 0" ng-cloak>
@@ -376,6 +467,10 @@
                                         <td>
                                             Si <input name="drinkBool" type="radio" ng-model="user.drinkBool" value="1" ng-required="!user.drinkBool">
                                             No <input name="drinkBool" type="radio" ng-model="user.drinkBool" value="0" ng-required="!user.drinkBool">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.drinkBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr ng-show="user.drinkBool && user.drinkBool != 0" ng-cloak>
@@ -387,63 +482,80 @@
                                         </td>
                                     </tr>
                                     <!-- Mujeres -->
-                                    <tr ng-cloak ng-show="user.sex == 0">
+                                    <tr ng-cloak ng-show="user.sex == 'F'">
                                         <td>
                                             ¿Esta usted embarazada?
                                         </td>
                                         <td>
-                                            Si <input name="pregnantBool" type="radio" ng-model="user.pregnantBool" value="1" ng-required="!user.pregnantBool && user.sex == 1">
-                                            No <input name="pregnantBool" type="radio" ng-model="user.pregnantBool" value="0" ng-required="!user.pregnantBool && user.sex == 1">
+                                            Si <input name="pregnantBool" type="radio" ng-model="user.pregnantBool" value="1" ng-required="!user.pregnantBool && user.sex == 'F'">
+                                            No <input name="pregnantBool" type="radio" ng-model="user.pregnantBool" value="0" ng-required="!user.pregnantBool && user.sex == 'F'">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.pregnantBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <tr ng-cloak ng-show="user.sex == 1 && user.pregnantBool && user.pregnantBool !=0">
+                                    <tr ng-cloak ng-show="user.sex == 'F' && user.pregnantBool && user.pregnantBool !=0">
                                         <td>
                                             Meses de gestación
                                         </td>
                                         <td>
                                             <input name="pregnant" type="number" min="0" max="9" class="form-control" ng-model="user.pregnant">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.pregnant.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <tr ng-cloak ng-show="user.sex == 1">
+                                    <tr ng-cloak ng-show="user.sex == 'F'">
                                         <td>
                                             ¿Ha tenido problemas con su periodo?
                                         </td>
                                         <td>
-                                            Si <input name="periodProblems" type="radio" ng-model="user.periodProblems" value="1" ng-required="!user.periodProblems && user.sex == 1">
-                                            No <input name="periodProblems" type="radio" ng-model="user.periodProblems" value="0" ng-required="!user.periodProblems && user.sex == 1">
+                                            Si <input name="periodProblems" type="radio" ng-model="user.periodProblems" value="1" ng-required="!user.periodProblems && user.sex == 'F'">
+                                            No <input name="periodProblems" type="radio" ng-model="user.periodProblems" value="0" ng-required="!user.periodProblems && user.sex == 'F'">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.periodProblems.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <tr ng-cloak ng-show="user.sex == 1">
+                                    <tr ng-cloak ng-show="user.sex == 'F'">
                                         <td>
                                             ¿Toma pastillas anticonceptivas o algún otro método hormonal?
                                         </td>
                                         <td>
-                                            Si <input name="hormonesBool" type="radio" ng-model="user.hormonesBool" value="1" ng-required="!user.hormonesBool && user.sex == 1">
-                                            No <input name="hormonesBool" type="radio" ng-model="user.hormonesBool" value="0" ng-required="!user.hormonesBool && user.sex == 1">
+                                            Si <input name="hormonesBool" type="radio" ng-model="user.hormonesBool" value="1" ng-required="!user.hormonesBool && user.sex == 'F'">
+                                            No <input name="hormonesBool" type="radio" ng-model="user.hormonesBool" value="0" ng-required="!user.hormonesBool && user.sex == 'F'">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.hormonesBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <tr ng-cloak ng-show="user.sex == 1 && user.hormonesBool && user.hormonesBool !=0">
+                                    <tr ng-cloak ng-show="user.sex == 'F' && user.hormonesBool && user.hormonesBool !=0">
                                         <td>
                                             ¿Cual?
                                         </td>
                                         <td>
-                                            <input name="hormones" type="text" class="form-control" ng-model="user.hormones" ng-required="user.hormonesBool && user.sex == 1 && user.hormonesBool != 0">
+                                            <input name="hormones" type="text" class="form-control" ng-model="user.hormones" ng-required="user.hormonesBool && user.sex == 'F' && user.hormonesBool != 0">
                                         </td>
                                     </tr>
-                                    <tr ng-cloak ng-show="user.sex == 1">
+                                    <tr ng-cloak ng-show="user.sex == 'F'">
                                         <td>
                                             ¿Esta usted amamantando?
                                         </td>
                                         <td>
-                                            Si <input name="breastFeeding" type="radio" ng-model="user.breastFeeding" value="1" ng-required="!user.breastFeeding && user.sex == 1">
-                                            No <input name="breastFeeding" type="radio" ng-model="user.breastFeeding" value="0" ng-required="!user.breastFeeding && user.sex == 1">
+                                            Si <input name="breastFeeding" type="radio" ng-model="user.breastFeeding" value="1" ng-required="!user.breastFeeding && user.sex == 'F'">
+                                            No <input name="breastFeeding" type="radio" ng-model="user.breastFeeding" value="0" ng-required="!user.breastFeeding && user.sex == 'F'">
+                                            <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.breastFeeding.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                            </p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="text-danger" ng-cloak ng-show="form.$submitted && form.$error.required">
-                            Todos los campos de la forma son obligatorios
-                            </p>
                         </div>
                     </div>
 
@@ -464,6 +576,10 @@
                                     <td>
                                         Si <input name="pain" type="radio" ng-model="user.pain" value="1" ng-required="!user.pain">
                                         No <input name="pain" type="radio" ng-model="user.pain" value="0" ng-required="!user.pain">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.pain.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -474,6 +590,10 @@
                                         Buena <input name="bucalHealth" type="radio" ng-model="user.bucalHealth" value="1" ng-required="!user.bucalHealth">
                                         Mala <input name="bucalHealth" type="radio" ng-model="user.bucalHealth" value="0" ng-required="!user.bucalHealth">
                                         Regular <input name="bucalHealth" type="radio" ng-model="user.bucalHealth" value="2" ng-required="!user.bucalHealth">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.bucalHealth.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -483,6 +603,10 @@
                                     <td>
                                         Si <input name="appearance" type="radio" ng-model="user.appearance" value="1" ng-required="!user.appearance">
                                         No <input name="appearance" type="radio" ng-model="user.appearance" value="0" ng-required="!user.appearance">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.appearance.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -492,6 +616,10 @@
                                     <td>
                                         Si <input name="dentalExperience" type="radio" ng-model="user.dentalExperience" value="1" ng-required="!user.dentalExperience">
                                         No <input name="dentalExperience" type="radio" ng-model="user.dentalExperience" value="0" ng-required="!user.dentalExperience">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.dentalExperience.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -502,6 +630,10 @@
                                         Si <input name="gumsBleed" type="radio" ng-model="user.gumsBleed" value="1" ng-required="!user.gumsBleed">
                                         No <input name="gumsBleed" type="radio" ng-model="user.gumsBleed" value="0" ng-required="!user.gumsBleed">
                                         Desconozco <input name="gumsBleed" type="radio" ng-model="user.gumsBleed" value="2" ng-required="!user.gumsBleed">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.gumsBleed.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -511,6 +643,10 @@
                                     <td>
                                         Si <input name="gumsTreatment" type="radio" ng-model="user.gumsTreatment" value="1" ng-required="!user.gumsTreatment">
                                         No <input name="gumsTreatment" type="radio" ng-model="user.gumsTreatment" value="0" ng-required="!user.gumsTreatment">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.gumsTreatment.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -520,6 +656,10 @@
                                     <td>
                                         Si <input name="mouthBreathing" type="radio" ng-model="user.mouthBreathing" value="1" ng-required="!user.mouthBreathing">
                                         No <input name="mouthBreathing" type="radio" ng-model="user.mouthBreathing" value="0" ng-required="!user.mouthBreathing">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.mouthBreathing.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -529,6 +669,10 @@
                                     <td>
                                         Si <input name="ulcers" type="radio" ng-model="user.ulcers" value="1" ng-required="!user.ulcers">
                                         No <input name="ulcers" type="radio" ng-model="user.ulcers" value="0" ng-required="!user.ulcers">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.ulcers.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -538,6 +682,10 @@
                                     <td>
                                         Si <input name="sensibilityBool" type="radio" ng-model="user.sensibilityBool" value="1" ng-required="!user.sensibilityBool">
                                         No <input name="sensibilityBool" type="radio" ng-model="user.sensibilityBool" value="0" ng-required="!user.sensibilityBool">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.sensibilityBool.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr ng-show="user.sensibilityBool && user.sensibilityBool !=0">
@@ -555,6 +703,10 @@
                                     <td>
                                         Si <input type="radio" ng-model="user.looseTooth" value="1" ng-required="!user.looseTooth">
                                         No <input type="radio" ng-model="user.looseTooth" value="0" ng-required="!user.looseTooth">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.looseTooth.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -563,6 +715,10 @@
                                     </td>
                                     <td>
                                         <input name="brushingFrequency" type="text" ng-model="user.brushingFrequency" class="form-control" required>
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.brushingFrequency.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -572,13 +728,14 @@
                                     <td>
                                         Si <input type="radio" ng-model="user.auxiliaryCleaning" value="1" ng-required="!user.auxiliaryCleaning">
                                         No <input type="radio" ng-model="user.auxiliaryCleaning" value="0" ng-required="!user.auxiliaryCleaning">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.auxiliaryCleaning.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="text-danger" ng-cloak ng-show="form.$submitted && form.$error.required">
-                            Todos los campos de la forma son obligatorios
-                        </p>
                     </div>
                     <!-- ATM -->
                     <div class="panel panel-default">
@@ -597,6 +754,10 @@
                                     <td>
                                         Si <input name="squeezesTooth" type="radio" ng-model="user.squeezesTooth" value="1" ng-required="!user.squeezesTooth">
                                         No <input name="squeezesTooth" type="radio" ng-model="user.squeezesTooth" value="0" ng-required="!user.squeezesTooth">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.squeezesTooth.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -606,6 +767,10 @@
                                     <td>
                                         Si <input name="musclePain" type="radio" ng-model="user.musclePain" value="1" ng-required="!user.musclePain">
                                         No <input name="musclePain" type="radio" ng-model="user.musclePain" value="0" ng-required="!user.musclePain">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.musclePain.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -615,6 +780,10 @@
                                     <td>
                                         Si <input name="mouthStuck" type="radio" ng-model="user.mouthStuck" value="1" ng-required="!user.mouthStuck">
                                         No <input name="mouthStuck" type="radio" ng-model="user.mouthStuck" value="0" ng-required="!user.mouthStuck">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.mouthStuck.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -624,6 +793,10 @@
                                     <td>
                                         Si <input name="click" type="radio" ng-model="user.click" value="1" ng-required="!user.click">
                                         No <input name="click" type="radio" ng-model="user.click" value="0" ng-required="!user.click">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.click.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -633,6 +806,10 @@
                                     <td>
                                         Si <input name="earPain" type="radio" ng-model="user.earPain" value="1" ng-required="!user.earPain">
                                         No <input name="earPain" type="radio" ng-model="user.earPain" value="0" ng-required="!user.earPain">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.earPain.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -642,6 +819,10 @@
                                     <td>
                                         Si <input name="chews" type="radio" ng-model="user.chews" value="1" ng-required="!user.chews">
                                         No <input name="chews" type="radio" ng-model="user.chews" value="0" ng-required="!user.chews">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.chews.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -651,6 +832,10 @@
                                     <td>
                                         Si <input name="biteNails" type="radio" ng-model="user.biteNails" value="1" ng-required="!user.biteNails">
                                         No <input name="biteNails" type="radio" ng-model="user.biteNails" value="0" ng-required="!user.biteNails">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.biteNails.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -660,13 +845,14 @@
                                     <td>
                                         Si <input name="trauma" type="radio" ng-model="user.trauma" value="1" ng-required="!user.trauma">
                                         No <input name="trauma" type="radio" ng-model="user.trauma" value="0" ng-required="!user.trauma">
+                                        <p class="help-block text-danger" ng-show="form.$submitted &amp;&amp; form.trauma.$error.required">
+                                                <span class="text-danger" ng-cloak>
+                                                Este campo obligatorio <br></span>
+                                        </p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="text-danger" ng-cloak ng-show="form.$submitted && form.$error.required">
-                            Todos los campos de la forma son obligatorios
-                        </p>
                     </div>
                     <div class="alert alert-warning aviso-privacidad">
                         <input name="privacy" type="checkbox" ng-model="user.privacy" required> Declaro que he contestado todas las preguntas con honestidad y según mi conocimiento. Así mismo he sido informado que los datos subministrados quedan reservados en la presente historia clínica, y amparada en el “secreto profesional” . Asi mismo acepto y entiendo los riesgos de mi tratamiento y consecuencias de no hacer lo que el médico me indique.
