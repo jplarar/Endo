@@ -69,49 +69,235 @@
                         {% else %}
                             <dd>No</dd>
                         {% endif %}
-                        <dt>Taking Medicine?</dt>
-                        <dd>{{ medicalRecord.takingMedicine }}</dd>
+                        <dt>Taking Medicine</dt>
+                        {% if medicalRecord.takingMedicine != null %}
+                            <dd>{{ medicalRecord.takingMedicine }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        {# TODO: #}
                         <dt>Patient illnesses</dt>
                         <dd>{{ medicalRecord.sickness }}</dd>
                         <dt>Observations</dt>
                         <dd>{{ medicalRecord.observations }}</dd>
                         <dt>Other Sickness</dt>
-                        <dd>{{ medicalRecord.otherSickness }}</dd>
+                        {% if medicalRecord.otherSickness != null %}
+                            <dd>{{ medicalRecord.otherSickness }}</dd>
+                        {% else %}
+                            <dd>NO</dd>
+                        {% endif %}
                         <dt>Anesthesia Reaction</dt>
-                        <dd>{{ medicalRecord.anesthesiaReaction }}</dd>
+                        {% if medicalRecord.anesthesiaReaction %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Medicine Reaction</dt>
-                        <dd>{{ medicalRecord.medicineReaction }}</dd>
+                        {% if medicalRecord.medicineReaction != null %}
+                            <dd>{{ medicalRecord.medicineReaction }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Bleeding</dt>
-                        <dd>{{ medicalRecord.bleeding }}</dd>
+                        {% if medicalRecord.bleeding %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Fainting</dt>
-                        <dd>{{ medicalRecord.fainting }}</dd>
+                        {% if medicalRecord.fainting  %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Chemotherapy</dt>
-                        <dd>{{ medicalRecord.chemotherapy|date("F jS \\a\\t g:ia") }}</dd>
-                        <dt>Hospitalisation</dt>
-                        <dd>{{ medicalRecord.hospitalisation }}</dd>
-                        <dt>Hospitalisation Date</dt>
-                        <dd>{{ medicalRecord.hospitalisationDate|date("F jS \\a\\t g:ia") }}</dd>
+                        {% if  medicalRecord.chemotherapy != null %}
+                            <dd>{{ medicalRecord.chemotherapy|date("F jS \\a\\t g:ia") }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Hospitalization</dt>
+                        {% if medicalRecord.hospitalisation != null %}
+                            <dd>Reason: {{ medicalRecord.hospitalisation }} - Date: {{ medicalRecord.hospitalisationDate|date("F jS \\a\\t g:ia") }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Nervous</dt>
-                        <dd>{{ medicalRecord.nervous }}</dd>
+                        {% if medicalRecord.nervous %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Smoke</dt>
-                        <dd>{{ medicalRecord.smoke }}</dd>
+                        {% if medicalRecord.smoke != null %}
+                            <dd>{{ medicalRecord.smoke }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                         <dt>Drink</dt>
-                        <dd>{{ medicalRecord.drink }}</dd>
-                        <dt>Drink</dt>
-                        <dd>{{ medicalRecord.drink }}</dd>
-
-
+                        {% if medicalRecord.drink != null%}
+                            <dd>{{ medicalRecord.drink }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        {% if medicalRecord.sex == 'F' %}
+                            <dt>Pregnant</dt>
+                            {% if medicalRecord.pregnant != null %}
+                                <dd>{{ medicalRecord.pregnant }}</dd>
+                            {% else %}
+                                <dd>No</dd>
+                            {% endif %}
+                            <dt>Period Problems</dt>
+                            {% if medicalRecord.periodProblems %}
+                                <dd>Yes</dd>
+                            {% else %}
+                                <dd>No</dd>
+                            {% endif %}
+                            <dt>Contraceptive methods or hormones</dt>
+                            {% if medicalRecord.hormones != null %}
+                                <dd>{{ medicalRecord.hormones }}</dd>
+                            {% else %}
+                                <dd>No</dd>
+                            {% endif %}
+                            <dt>Contraceptive methods or hormones</dt>
+                            {% if medicalRecord.hormones != null %}
+                                <dd>{{ medicalRecord.hormones }}</dd>
+                            {% else %}
+                                <dd>No</dd>
+                            {% endif %}
+                            <dt>Breastfeeding</dt>
+                            {% if medicalRecord.breastfeeding %}
+                                <dd>Yes</dd>
+                            {% else %}
+                                <dd>No</dd>
+                            {% endif %}
+                        {% endif %}
+                        <hr>
+                        <h3>Dental history</h3>
+                        <dt>Mouth pain</dt>
+                        {% if medicalRecord.pain %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Bucal health</dt>
+                        {% if medicalRecord.bucalHealth == 2 %}
+                            <dd>Regular</dd>
+                        {% elseif medicalRecord.bucalHealth == 1 %}
+                            <dd>Good</dd>
+                        {% else %}
+                            <dd>Bad</dd>
+                        {% endif %}
+                        <dt>Happy with appearance</dt>
+                        {% if medicalRecord.appearance %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Dental bad experience</dt>
+                        {% if medicalRecord.dentalExperience %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Bleeding gums</dt>
+                        {% if medicalRecord.gumsBleed == 2 %}
+                            <dd>I do not know</dd>
+                        {% elseif medicalRecord.gumsBleed == 1 %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Gums Treatment</dt>
+                        {% if medicalRecord.gumsTreatment %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Breathe with your mouth</dt>
+                        {% if medicalRecord.mouthBreathing %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Ulcers or sores</dt>
+                        {% if medicalRecord.ulcers %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Sensitive teeth</dt>
+                        {% if medicalRecord.sensibility != null %}
+                            <dd>{{ medicalRecord.sensibility }}</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Loose tooth</dt>
+                        {% if medicalRecord.looseTooth %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Brushing frequency</dt>
+                        <dd>{{ medicalRecord.brushingFrequency }}</dd>
+                        <dt>Auxiliary cleaning tool</dt>
+                        {% if medicalRecord.auxiliaryCleaning %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <hr>
+                        <h3>ATM</h3>
+                        <dt>Grind or clench your teeth</dt>
+                        {% if medicalRecord.squeezesTooth %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Face or neck muscles aching</dt>
+                        {% if medicalRecord.musclePain %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Locked mouth</dt>
+                        {% if medicalRecord.mouthStuck %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Click when open your mouth</dt>
+                        {% if medicalRecord.click %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Pain in the ears</dt>
+                        {% if medicalRecord.earPain %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Chew with all his teeth</dt>
+                        {% if medicalRecord.chews %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Biting nails, pen or soft tissue</dt>
+                        {% if medicalRecord.biteNails %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
+                        <dt>Facial trauma</dt>
+                        {% if medicalRecord.trauma %}
+                            <dd>Yes</dd>
+                        {% else %}
+                            <dd>No</dd>
+                        {% endif %}
                     </dl>
-
-
-
-
-
-                    {# <img src="{{ medicalRecord.bannerImageS3Key|s3 }}"/> #}
                 </div><!-- /.box-body -->
-                {# <div class="box-footer">
-                  Footer
-                </div><!-- /.box-footer--> #}
               </div><!-- /.box -->
             </div>
         </div>
