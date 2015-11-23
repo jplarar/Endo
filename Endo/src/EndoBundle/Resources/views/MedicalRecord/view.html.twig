@@ -82,7 +82,7 @@
                         <dd>{{ medicalRecord.observations }}</dd>
                         <dt>Other Sickness</dt>
                         {% if medicalRecord.otherSickness != null %}
-                            <dd>{{ medicalRecord.otherSickness }}</dd>
+                            <dd><b class="label-danger">{{ medicalRecord.otherSickness }}</b></dd>
                         {% else %}
                             <dd>No</dd>
                         {% endif %}
