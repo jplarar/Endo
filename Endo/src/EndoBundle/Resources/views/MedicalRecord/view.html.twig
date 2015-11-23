@@ -63,7 +63,7 @@
                         {% else %}
                             <dd>Regular </dd>
                         {% endif %}
-                        <dt>Previous Medical Treatment</dt>
+                        <dt>Actual Medical Treatment</dt>
                         {% if medicalRecord.medicalTreatment %}
                             <dd>Yes</dd>
                         {% else %}
@@ -77,14 +77,14 @@
                         {% endif %}
                         {# TODO: #}
                         <dt>Patient illnesses</dt>
-                        <dd>{{ medicalRecord.sickness }}</dd>
+                        <dd><b class="label-danger">{{ medicalRecord.getIllnesses() }}</b></dd>
                         <dt>Observations</dt>
                         <dd>{{ medicalRecord.observations }}</dd>
                         <dt>Other Sickness</dt>
                         {% if medicalRecord.otherSickness != null %}
                             <dd>{{ medicalRecord.otherSickness }}</dd>
                         {% else %}
-                            <dd>NO</dd>
+                            <dd>No</dd>
                         {% endif %}
                         <dt>Anesthesia Reaction</dt>
                         {% if medicalRecord.anesthesiaReaction %}

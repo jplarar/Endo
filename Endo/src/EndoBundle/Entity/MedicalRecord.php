@@ -16,8 +16,24 @@ class MedicalRecord
     ##       METADATA      ##
     #########################
 
-    // none.
-
+    private static $illnesses = array (
+        16 => 'Presión baja, alta',
+        15 => 'Problemas cardiacos',
+        14 => 'Alergias',
+        13 => 'Diabetes',
+        12 => 'Problemas renales',
+        11 => 'Hepatitis',
+        10 => 'Alteraciones nerviosas',
+        9 => 'Fiebre reumática',
+        8 => 'Artritis',
+        7 => 'Gastritis / Ulcera gastrointestinal',
+        6 => 'Enfermedades de Transmisión Sexual (VIH/SIDA)',
+        5 => 'Problemas de Tiroides',
+        4 => 'Anemia',
+        3 => 'Cancer',
+        2 => 'Epilepsias / Convulsiones',
+        1 => 'Osteoporosis',
+    );
 
     #########################
     ##      PROPERTIES     ##
@@ -319,7 +335,7 @@ class MedicalRecord
     ## OBJECT RELATIONSHIP ##
     #########################
 
-    // none.
+    // none
 
     #########################
     ##     CONSTRUCTOR     ##
@@ -332,7 +348,23 @@ class MedicalRecord
     ##    STATIC METHODS   ##
     #########################
 
-    //none.
+    public function getIllnesses()
+    {
+        $sickness = str_split(strrev(strval($this->sickness)));
+        $sicknessesString = '';
+        $i = 1;
+        foreach ($sickness as $sick) {
+            if ($sick == '1') {
+                if ($sicknessesString != '') {
+                    $sicknessesString = $sicknessesString . ', ' .static::$illnesses[$i];
+                } else {
+                    $sicknessesString = static::$illnesses[$i];
+                }
+            }
+            $i++;
+        }
+        return $sicknessesString;
+    }
 
 
     #########################
